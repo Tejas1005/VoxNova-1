@@ -1,457 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoxNova - Bridging Communication Gaps</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --secondary: #7e22ce;
-      --accent: #06b6d4;
-      --light: #f8fafc;
-      --dark: #1e293b;
-      --gray: #64748b;
-      --success: #10b981;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    /* Header */
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 15px 0;
-    }
-    
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .logo h1 {
-      font-size: 28px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .logo-icon {
-      font-size: 32px;
-      color: var(--primary);
-    }
-    
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-    }
-    
-    nav a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    nav a:after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background: var(--primary);
-      border-radius: 3px;
-      transition: width 0.3s ease;
-    }
-    
-    nav a:hover {
-      color: var(--primary);
-    }
-    
-    nav a:hover:after {
-      width: 100%;
-    }
-    
-    /* Hero Section */
-    .hero {
-      padding: 80px 0;
-      text-align: center;
-    }
-    
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .hero h2 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      color: var(--dark);
-      line-height: 1.2;
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--gray);
-      margin-bottom: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 50px;
-      flex-wrap: wrap;
-    }
-    
-    .btn {
-      padding: 15px 30px;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-    }
-    
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
-    }
-    
-    .btn-secondary {
-      background: white;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(37, 99, 235, 0.1);
-      transform: translateY(-3px);
-    }
-    
-    .btn-accent {
-      background: var(--secondary);
-      color: white;
-      box-shadow: 0 4px 14px rgba(126, 34, 206, 0.4);
-    }
-    
-    .btn-accent:hover {
-      background: #6b21a8;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(126, 34, 206, 0.5);
-    }
-    
-    .hero-image {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .hero-image i {
-      font-size: 120px;
-      color: var(--primary);
-      opacity: 0.8;
-    }
-    
-    /* Features Section */
-    .features {
-      padding: 100px 0;
-      background: white;
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .section-title h3 {
-      font-size: 2.2rem;
-      color: var(--dark);
-      margin-bottom: 15px;
-    }
-    
-    .section-title p {
-      font-size: 1.1rem;
-      color: var(--gray);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .feature-list {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    
-    .feature-item {
-      background: var(--light);
-      padding: 30px;
-      border-radius: 16px;
-      text-align: center;
-      width: 280px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-    
-    .feature-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-    
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 28px;
-    }
-    
-    .feature-item h4 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      color: var(--dark);
-    }
-    
-    .feature-item p {
-      color: var(--gray);
-      font-size: 0.95rem;
-    }
-    
-    /* How It Works */
-    .how-it-works {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    }
-    
-    .steps {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 50px;
-      flex-wrap: wrap;
-    }
-    
-    .step {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      width: 250px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      position: relative;
-    }
-    
-    .step-number {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--primary);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-    
-    .step-icon {
-      font-size: 40px;
-      color: var(--primary);
-      margin: 20px 0;
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 60px 0 30px;
-      text-align: center;
-    }
-    
-    .footer-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .footer-logo {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 30px 0;
-    }
-    
-    .footer-links a {
-      color: #cbd5e1;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-    }
-    
-    .copyright {
-      margin-top: 30px;
-      color: #94a3b8;
-      font-size: 0.9rem;
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      nav ul {
-        gap: 15px;
-      }
-      
-      .hero h2 {
-        font-size: 2.2rem;
-      }
-      
-      .buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .btn {
-        width: 250px;
-        justify-content: center;
-      }
-      
-      .feature-list {
-        gap: 20px;
-      }
-      
-      .steps {
-        gap: 50px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxNova - Communication Hub</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1d29 0%, #2d1b3d 100%);
+            color: #e5e7eb;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f59e0b, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        .nav-links a:hover {
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            transform: translateY(-2px);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #ec4899);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(55, 65, 81, 0.3) 0%, rgba(31, 41, 55, 0.3) 100%);
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .hero-image {
+          width: 700px;
+          height: 300px;
+          margin: 0 auto 2rem;
+          background-image: url('');
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          border-radius: 15px;
+          filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(245, 158, 11, 0.4);
+        }
+        .hero-description {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .step {
+            padding: 2rem 0;
+        }
+        .stepheader {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .stepheader .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #f59e0b, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stepheader .description {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .selection-deaf {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .deaf, .selection-item {
+            background: linear-gradient(135deg, rgba(55, 65, 81, 0.4) 0%, rgba(31, 41, 55, 0.4) 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .deaf:hover, .selection-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        .content, .selection-content {
+            position: relative;
+            z-index: 2;
+        }
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+        .content h3, .selection-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #f59e0b;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .content p, .selection-content p {
+            color: #d1d5db;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .deaf {
+            border-left: 4px solid #3b82f6;
+        }
+        .mute {
+            border-left: 4px solid rgb(77, 124, 77);
+        }
+        .both {
+            border-left: 4px solid #ec4899;
+        }
+        .deaf:hover {
+            border-left-color: #60a5fa;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+        .mute:hover {
+            border-left-color: #477842;
+            box-shadow: 0 20px 40px rgba(21, 139, 25, 0.2);
+        }
+        .both:hover {
+            border-left-color: #f472b6;
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+        }
+        .footer {
+            background: linear-gradient(135deg, rgba(26, 29, 41, 0.9) 0%, rgba(45, 27, 61, 0.9) 100%);
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(229, 231, 235, 0.1);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        .footer-links a:hover {
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            transform: translateY(-2px);
+        }
+        .copyright p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(229, 231, 235, 0.1);
+        }
+        .features {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.3) 0%, rgba(55, 65, 81, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            border-radius: 20px;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #f59e0b, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, rgba(55, 65, 81, 0.4) 0%, rgba(31, 41, 55, 0.4) 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+            border-left-color: #a78bfa;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .feature-item h4 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #f59e0b;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-item p {
+            color: #d1d5db;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(45, 27, 61, 0.3) 0%, rgba(26, 29, 41, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            border-radius: 20px;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .how-it-works .step {
+            background: linear-gradient(135deg, rgba(55, 65, 81, 0.4) 0%, rgba(31, 41, 55, 0.4) 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .how-it-works .step h4 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #f59e0b;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .how-it-works .step p {
+            color: #d1d5db;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature-list,
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .section-title h3 {
+                font-size: 2rem;
+            }
+            
+            .feature-icon,
+            .step-icon {
+                display: none;
+            }
+        }
+        .choices {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .choice-btn {
+            background: linear-gradient(135deg, #7d1649 0%, #853b60 100%);
+            color: #fff;
+            font-style: italic;
+            padding: 12px 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            /* box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); */
+            backdrop-filter: blur(10px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .choice-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            /* box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4); */
+            background: linear-gradient(135deg,  #7d1649 0%, #853b60 100%);
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container header-content">
-      <div class="logo">
-        <i class="fas fa-hands logo-icon"></i>
-        <h1>VoxNova</h1>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">VoxNova</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">About</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="morefeatures.html">More features</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+            
+    <div class="container">
+        <section class="hero">
+            <div class="hero-image">
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h2>The bridge between silence and sound</h2>
-      <p>AI-powered communication bridge that translates Sign ↔ Text ↔ Speech in regional languages</p>
-      
-      <div class="buttons">
-        <a href="deaf.html" class="btn btn-primary">
-          <i class="fas fa-ear-deaf"></i>
-          I'm Deaf
-        </a>
-        <a href="mute.html" class="btn btn-secondary">
-          <i class="fas fa-microphone-slash"></i>
-          I'm Mute
-        </a>
-        <a href="both.html" class="btn btn-accent">
-          <i class="fas fa-accessible-icon"></i>
-          Both
-        </a>
-      </div>
-      
-      <div class="hero-image">
-        <i class="fas fa-sign-language"></i>
-      </div>
-    </div>
-  </section>
+            </div>
+            <h1>Welcome</h1>
+            <p class="hero-description">
+                Breaking communication barriers. Our innovative platform seamlessly converts sign language to text and text to sign language, empowering everyone to communicate. Connect hearts, bridge gaps, and unlock the power of universal communication.
+            </p>
+        </section>
+        
+        <section class="step">
+            <div class="stepheader">
+                <h2 class="title">Tell us about yourself</h2>
+                <p class="description">Choose the option that best describes your communication needs so we can provide the most suitable tools and resources.</p>
+            </div>
 
-  <!-- Features Section -->
-  <section id="features" class="features">
+            <div class="selection-deaf">
+                <div class="deaf">
+                    <div class="content">
+                        <span class="icon">👂🚫</span>
+                        <h3>I am Deaf</h3>
+                        <p>Access visual communication tools, sign language recognition, and text-based resources designed specifically for the deaf community. Convert spoken words to text and sign language.</p>
+                        <button class="choice-btn" onclick="window.location.href='deaf.html'">Get Started</button>
+                    </div>
+                </div>
+
+                <div class="selection-item mute">
+                    <div class="content">
+                        <span class="icon">🗣️🚫</span>
+                        <h3>I am Mute</h3>
+                        <p>Express yourself with text-to-speech tools, sign language to voice conversion, and alternative communication methods that give you a voice in every conversation.</p>
+                        <button class="choice-btn" onclick="window.location.href='mute.html'">Get Started</button>
+                    </div>
+                </div>
+
+                <div class="selection-item both">
+                    <div class="selection-content">
+                        <span class="icon">🤝</span>
+                        <h3>Both Deaf & Mute</h3>
+                        <p>Comprehensive communication suite combining visual, tactile, and digital tools. Full sign language to text conversion and advanced assistive technologies for complete communication freedom.</p>
+                        <button class="choice-btn" onclick="window.location.href='both.html'">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="features" class="features">
     <div class="container">
       <div class="section-title">
         <h3>Features</h3>
@@ -485,8 +513,6 @@
       </div>
     </div>
   </section>
-
-  <!-- How It Works Section -->
   <section id="how-it-works" class="how-it-works">
     <div class="container">
       <div class="section-title">
@@ -525,35 +551,18 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-content">
-      <div class="footer-logo">VoxNova</div>
-      <p>Breaking down communication barriers with AI technology</p>
-      
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Support</a>
-      </div>
-      
-      <div class="copyright">
-        &copy; 2023 VoxNova. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Simple animation for buttons
-    document.querySelectorAll('.btn').forEach(button => {
-      button.addEventListener('click', function() {
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          this.style.transform = '';
-        }, 200);
-      });
-    });
-  </script>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#terms">Terms of Service</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#support">Support Center</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="copyright">
+                <p>© 2025 VoxNova. Making communication accessible for everyone.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
